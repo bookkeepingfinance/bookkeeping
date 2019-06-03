@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookkeeping.mapper.UserWechatMapper">
+
+    <select id="wechatIsExit"  resultType="long" parameterType="string">
+        select id
+        from user_wechat
+        where open_id = #{openId}
+    </select>
+
+    <insert id="createWechatUser"  parameterType="com.bookkeeping.entity.UserWechat">
+        insert into user_wechat(open_id,name,gender,head_url,user_id)
+        values (#{openId},#{name},#{gender},#{headUrl},#{userId})
+    </insert>
+
+</mapper>

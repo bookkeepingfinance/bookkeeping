@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookkeeping.mapper.UserMapper">
+
+    <select id="mobileIsExit"  resultType="long" parameterType="string">
+        select id
+        from user
+        where mobile = #{mobile}
+    </select>
+
+    <insert id ="createMobileUser"  parameterType="com.bookkeeping.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(mobile) values (#{mobile})
+    </insert>
+
+</mapper>
