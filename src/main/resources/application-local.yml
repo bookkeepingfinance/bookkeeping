@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: root
+    password: neil
+    url: jdbc:mysql://localhost:3306/book_keeping?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cache:
+    type: generic
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    com.bookkeeping: debug
+    io.lettuce: debug
+
+
