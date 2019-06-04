@@ -8,6 +8,7 @@ spring:
     active: local
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 200
       minimum-idle: 20
