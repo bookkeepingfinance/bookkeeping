@@ -36,6 +36,7 @@ public class CacheConfig {
 
     /**
      * 配置 spring.cache.type = redis 时生效，设置序列化工具为GenericJackson2JsonRedisSerializer，而不是使用 jdk 的序列化
+     *
      * @param cacheProperties
      * @return
      */
@@ -64,6 +65,7 @@ public class CacheConfig {
 
     /**
      * 配置 spring.cache.type = generic 或者未配置 时生效，缓存使用 guava cache，而不是使用 ConcurrentMap
+     *
      * @return
      */
     @Bean
@@ -82,7 +84,7 @@ public class CacheConfig {
 
                             private final com.google.common.cache.Cache<Object, Object> cache = CacheBuilder.newBuilder()
                                     .maximumSize(10240)
-                                    .expireAfterWrite(30, TimeUnit.MINUTES)
+                                    .expireAfterWrite(2, TimeUnit.HOURS)
                                     .build();
 
                             @Override
