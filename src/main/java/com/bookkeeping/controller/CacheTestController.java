@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = {"test", ""})
+@RequestMapping(value = {"test"})
 public class CacheTestController {
 
     @Autowired

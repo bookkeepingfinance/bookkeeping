@@ -4,13 +4,17 @@ spring:
     password: neil
     url: jdbc:mysql://localhost:3306/book_keeping?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
   cache:
-    type: generic
+    type: redis
+  session:
+    store-type: redis
+    redis:
+      namespace: user:session
 
 logging:
   level:
     root: info
     org.springframework: info
     com.bookkeeping: debug
-    io.lettuce: debug
+    io.lettuce: info
 
 
