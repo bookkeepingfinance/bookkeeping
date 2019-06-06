@@ -79,9 +79,16 @@ public class SessionFilter extends OncePerRequestFilter implements OrderedFilter
                 }
                 throw new ServletException(e);
             }
+        }else {
+            log.debug("未登陆");
+            response.setStatus(401);
+            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            PrintWriter writer = response.getWriter();
+            Response<String> msg = Response.<String>builder().flag("0").message("未登陆").build();
+            writer.write(objectMapper.writeValueAsString(msg));
+            writer.close();
+            return;
         }
-
-
         filterChain.doFilter(request, response);
     }
 
