@@ -35,7 +35,6 @@ public class SessionFilter extends OncePerRequestFilter implements OrderedFilter
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    @Qualifier("cacheSessionServiceImpl")
     private SessionService<SessionService.Session> sessionService;
 
     @Override
@@ -49,9 +48,6 @@ public class SessionFilter extends OncePerRequestFilter implements OrderedFilter
         }
         if (!StringUtils.hasText(sessionId)) {
             sessionId = request.getParameter("sessionId");
-        }
-        if (!StringUtils.hasText(sessionId)) {
-            sessionId = request.getParameter("sid");
         }
         log.debug("session-id {}",sessionId);
         if (StringUtils.hasText(sessionId)) {
