@@ -5,10 +5,12 @@ import com.bookkeeping.controller.response.Response;
 import com.bookkeeping.entity.User;
 import com.bookkeeping.entity.UserWechat;
 import com.bookkeeping.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -22,6 +24,9 @@ import java.util.TreeMap;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     @Resource
     private UserService userService;
