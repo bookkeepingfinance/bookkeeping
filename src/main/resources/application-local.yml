@@ -4,9 +4,9 @@ spring:
     password: neil
     url: jdbc:mysql://localhost:3306/book_keeping?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
   cache:
-    type: redis
+    type: generic
   session:
-    store-type: redis
+    store-type: jdbc
     redis:
       namespace: user:session
 

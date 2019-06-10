@@ -14,7 +14,7 @@ import java.util.Optional;
  * datetime: 2019-06-04 17:19 <br>
  * <p></p>
  */
-//@Service
+@Service
 public class DatabaseSessionServiceImpl implements SessionService<SessionService.Session> {
 
     @Autowired
