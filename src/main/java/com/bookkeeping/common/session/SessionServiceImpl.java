@@ -1,5 +1,6 @@
 package com.bookkeeping.common.session;
 
+import com.bookkeeping.entity.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -14,19 +15,19 @@ import java.util.Optional;
  */
 @Service
 @Primary
-public class SessionServiceImpl implements SessionService<SessionService.Session> {
+public class SessionServiceImpl implements SessionService<UserSession> {
 
     @Autowired(required = false)
     @Qualifier(value = "databaseSessionServiceImpl")
-    private SessionService<Session> databaseSessionService;
+    private SessionService<UserSession> databaseSessionService;
 
     @Autowired
     @Qualifier(value = "cacheSessionServiceImpl")
-    private SessionService<Session> cacheSessionService;
+    private SessionService<UserSession> cacheSessionService;
 
 
     @Override
-    public void save(Session session) throws Exception {
+    public void save(UserSession session) throws Exception {
         if (null != databaseSessionService) {
             databaseSessionService.save(session);
         }
@@ -34,8 +35,8 @@ public class SessionServiceImpl implements SessionService<SessionService.Session
     }
 
     @Override
-    public Optional<Session> load(Session session) throws Exception {
-        Optional<Session> result = cacheSessionService.load(session);
+    public Optional<UserSession> load(UserSession session) throws Exception {
+        Optional<UserSession> result = cacheSessionService.load(session);
         if (result.isPresent()) {
             return result;
         }

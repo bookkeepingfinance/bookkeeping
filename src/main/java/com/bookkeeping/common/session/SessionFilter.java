@@ -1,6 +1,7 @@
 package com.bookkeeping.common.session;
 
 import com.bookkeeping.controller.response.Response;
+import com.bookkeeping.entity.UserSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,16 @@ public class SessionFilter extends OncePerRequestFilter implements OrderedFilter
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    private SessionService<SessionService.Session> sessionService;
+    private SessionService<UserSession> sessionService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        String requestURI = request.getRequestURI();
+        if(requestURI.contains("login")){
+            filterChain.doFilter(request,response);
+            return;
+        }
+
         String sessionId = request.getHeader("session-id");
         if (!StringUtils.hasText(sessionId)) {
             sessionId = request.getHeader("sessionId");
@@ -52,9 +59,9 @@ public class SessionFilter extends OncePerRequestFilter implements OrderedFilter
         log.debug("session-id {}",sessionId);
         if (StringUtils.hasText(sessionId)) {
             try {
-                SessionService.Session session = new SessionService.Session();
+                UserSession session = new UserSession();
                 session.setSessionId(sessionId);
-                Optional<SessionService.Session> loadSession = sessionService.load(session);
+                Optional<UserSession> loadSession = sessionService.load(session);
                 if (loadSession.isPresent()) {
                     log.debug("session: {}", loadSession);
                     HttpSession httpSession = request.getSession(true);

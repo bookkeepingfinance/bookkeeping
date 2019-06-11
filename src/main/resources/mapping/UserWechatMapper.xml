@@ -3,7 +3,7 @@
 <mapper namespace="com.bookkeeping.mapper.UserWechatMapper">
 
     <select id="wechatIsExit"  resultType="long" parameterType="string">
-        select id
+        select user_id
         from user_wechat
         where open_id = #{openId}
     </select>

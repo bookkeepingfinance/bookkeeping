@@ -15,11 +15,11 @@ import java.util.Optional;
  */
 public class SessionServiceTest extends BookkeepingApplicationTests {
 
-    @Autowired
-    @Qualifier(value = "cacheSessionServiceImpl")
-    private SessionService<SessionService.Session> cacheSessionService;
+//    @Autowired
+//    @Qualifier(value = "cacheSessionServiceImpl")
+//    private SessionService<SessionService.Session> cacheSessionService;
 
-    @Test
+    /*@Test
     public void save() throws Exception {
         SessionService.Session session = new SessionService.Session();
         session.setSessionId("4a2155a9-cf06-4a85-b407-214a53d0e439");
@@ -38,11 +38,11 @@ public class SessionServiceTest extends BookkeepingApplicationTests {
         load.ifPresent(s->{
             System.err.println(s);
         });
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void memory() throws Exception {
         save();
         load();
-    }
+    }*/
 }

@@ -1,6 +1,6 @@
 package com.bookkeeping.common.session;
 
-import lombok.Data;
+import com.bookkeeping.entity.UserSession;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import java.util.Optional;
  * datetime: 2019-06-04 16:41 <br>
  * <p></p>
  */
-public interface SessionService<T extends SessionService.Session> {
+public interface SessionService<T extends UserSession> {
 
     /**
      * 保存session
@@ -26,21 +26,5 @@ public interface SessionService<T extends SessionService.Session> {
      */
     Optional<T> load(T session) throws Exception;
 
-    @Data
-    class Session {
 
-        private Long id;
-        private String sessionId;
-        private Long userId;
-        private SessionData sessionData;
-
-        @Data
-        public static class SessionData {
-            String openId;
-            String nikeName;
-            Long age;
-            String mobile;
-            String deviceNo;
-        }
-    }
 }

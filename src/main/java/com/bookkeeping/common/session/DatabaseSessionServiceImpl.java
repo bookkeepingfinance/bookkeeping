@@ -2,11 +2,9 @@ package com.bookkeeping.common.session;
 
 import com.bookkeeping.entity.UserSession;
 import com.bookkeeping.mapper.UserSessionMapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -15,12 +13,11 @@ import java.util.Optional;
  * <p></p>
  */
 @Service
-public class DatabaseSessionServiceImpl implements SessionService<SessionService.Session> {
+public class DatabaseSessionServiceImpl implements SessionService<UserSession> {
 
     @Autowired
-    private ObjectMapper objectMapper;
-    @Autowired
     private UserSessionMapper userSessionMapper;
+
 
     /**
      * 保存session到数据库
@@ -28,17 +25,14 @@ public class DatabaseSessionServiceImpl implements SessionService<SessionService
      * @throws Exception
      */
     @Override
-    public void save(Session session) throws Exception {
-        UserSession userSession = new UserSession();
-        userSession.setSessionId(session.getSessionId());
-        userSession.setUserId(session.getUserId());
-        Optional<UserSession> load0 = this.load0(userSession);
+    public void save(UserSession session) throws Exception {
+
+        Optional<UserSession> load0 = this.load0(session);
         if (load0.isPresent()) {//更新
-            UserSession us = load0.get();
-            us.setSessionData(objectMapper.writeValueAsString(session.getSessionData()));
-            userSessionMapper.update(us);
+
+            userSessionMapper.update(session);
         } else {//新增
-            userSessionMapper.insert(userSession);
+            userSessionMapper.insert(session);
         }
     }
 
@@ -49,27 +43,9 @@ public class DatabaseSessionServiceImpl implements SessionService<SessionService
      * @throws Exception
      */
     @Override
-    public Optional<Session> load(Session session) throws Exception {
-        UserSession userSession = new UserSession();
-        userSession.setSessionId(session.getSessionId());
-        userSession.setUserId(session.getUserId());
-        return load0(userSession)
-                .map(us -> {
-                    Long id = us.getId();
-                    Long userId = us.getUserId();
-                    String sessionId = us.getSessionId();
-                    try {
-                        Session s = new Session();
-                        s.setId(id);
-                        s.setUserId(userId);
-                        s.setSessionId(sessionId);
-                        s.setSessionData(objectMapper.readValue(us.getSessionData(), Session.SessionData.class));
-                        return s;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                });
+    public Optional<UserSession> load(UserSession session) throws Exception {
+
+        return load0(session);
     }
 
     private Optional<UserSession> load0(UserSession userSession) {

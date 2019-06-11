@@ -11,14 +11,16 @@ import java.util.Optional;
 @Repository
 public interface UserSessionMapper {
     @Select(value =
-            "select * " +
+            "<script>select * " +
                     "from user_session " +
                     "<where>" +
                     "<if test='sessionId != null'> and session_id = #{sessionId} </if>" +
                     "<if test='userId != null'> and user_id = #{userId} </if>" +
+                    "</where>" +
                     "order by id desc " +
                     "limit 1 " +
-                    ";")
+                    ";" +
+                    "</script>")
     Optional<UserSession> find(UserSession session);
 
     @Update(value = "update user_session " +
