@@ -8,7 +8,7 @@
         where mobile = #{mobile}
     </select>
 
-    <insert id ="createMobileUser"  parameterType="com.bookkeeping.entity.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id ="createMobileUser" >
         insert into user(mobile) values (#{mobile})
     </insert>
 
