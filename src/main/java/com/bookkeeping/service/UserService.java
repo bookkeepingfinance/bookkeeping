@@ -24,8 +24,7 @@ public class UserService {
     * @Date:11:26 2019-06-03
     */
     public Long mobileIsExit(String mobile) {
-        Long result = userMapper.mobileIsExit(mobile);
-         return result == null?-1:result;
+         return userMapper.mobileIsExit(mobile);
     }
 
     /**
@@ -35,8 +34,7 @@ public class UserService {
     * @Date:11:58 2019-06-03
     */
     public Long wechatIsExit(String openId) {
-        Long result = userWechatMapper.wechatIsExit(openId);
-        return result == null?-1:result;
+        return userWechatMapper.wechatIsExit(openId);
     }
 
     /**
@@ -45,7 +43,7 @@ public class UserService {
      * @Author:wanghua
      * @Date:11:24 2019-06-03
      */
-    public Boolean createMobileUser(User user) {
+    public Integer createMobileUser(User user) {
         return userMapper.createMobileUser(user);
     }
 
@@ -55,7 +53,7 @@ public class UserService {
      * @Author:wanghua
      * @Date:11:25 2019-06-03
      */
-    public Boolean createWechatUser(UserWechat userWechat) {
+    public Integer createWechatUser(UserWechat userWechat) {
         return userWechatMapper.createWechatUser(userWechat);
     }
 
@@ -65,8 +63,40 @@ public class UserService {
      * @Author:wanghua
      * @Date:11:25 2019-06-03
      */
-    public Boolean bindMobile(String mobile) {
+    public Integer bindMobile(String mobile) {
         return userWechatMapper.bindMobile(mobile);
     }
 
+    /**
+    * 查找用户WeChat
+    *
+    * @Author:wanghua
+    * @Date:10:14 2019-06-12
+    */
+    public UserWechat findUserWechat(Long userId){
+        return userWechatMapper.findUserWechat(userId);
+    }
+
+
+
+    /**
+    * 更新user
+    *
+    * @Author:wanghua
+    * @Date:10:18 2019-06-12
+    */
+    public Integer updateUser(User user){
+        return userMapper.updateUser(user);
+    }
+
+
+    /**
+     * 修改微信表userId
+     *
+     * @Author:wanghua
+     * @Date:11:22 2019-06-12
+     */
+    public Integer updateWechatUserId(Long oldUserId,Long newUserId){
+        return userWechatMapper.updateWechatUserId(oldUserId,newUserId);
+    }
 }

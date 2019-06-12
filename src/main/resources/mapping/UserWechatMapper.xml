@@ -8,9 +8,21 @@
         where open_id = #{openId}
     </select>
 
-    <insert id="createWechatUser"  parameterType="com.bookkeeping.entity.UserWechat">
+    <select id="findUserWechat" resultType="com.bookkeeping.entity.UserWechat">
+        select *
+        from user_wechat
+        where user_id = #{userId}
+    </select>
+
+    <insert id="createWechatUser">
         insert into user_wechat(open_id,name,gender,head_url,user_id)
         values (#{openId},#{name},#{gender},#{headUrl},#{userId})
     </insert>
+
+    <update id="updateWechatUserId">
+        update user_wechat
+        set user_id = #{newUserId}
+        where user_id = #{oldUserId}
+    </update>
 
 </mapper>

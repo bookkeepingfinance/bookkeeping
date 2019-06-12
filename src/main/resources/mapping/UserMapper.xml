@@ -8,8 +8,16 @@
         where mobile = #{mobile}
     </select>
 
+
+
     <insert id ="createMobileUser" >
         insert into user(mobile) values (#{mobile})
     </insert>
+
+    <update id="updateUser">
+        update user
+        set name = #{name},gender = #{gender},mobile = #{mobile}
+        where id = #{id}
+    </update>
 
 </mapper>

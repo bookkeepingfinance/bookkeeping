@@ -29,7 +29,6 @@ public class DatabaseSessionServiceImpl implements SessionService<UserSession> {
 
         Optional<UserSession> load0 = this.load0(session);
         if (load0.isPresent()) {//更新
-
             userSessionMapper.update(session);
         } else {//新增
             userSessionMapper.insert(session);
@@ -46,6 +45,11 @@ public class DatabaseSessionServiceImpl implements SessionService<UserSession> {
     public Optional<UserSession> load(UserSession session) throws Exception {
 
         return load0(session);
+    }
+
+    @Override
+    public Long findUserId(String sessionId) {
+        return userSessionMapper.findUserId(sessionId);
     }
 
     private Optional<UserSession> load0(UserSession userSession) {

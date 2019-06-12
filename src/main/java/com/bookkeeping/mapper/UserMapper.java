@@ -14,7 +14,7 @@ public interface UserMapper {
     * @Author:wanghua
     * @Date:14:42 2019-05-31
     */
-    public Long mobileIsExit(String mobile);
+    Long mobileIsExit(String mobile);
 
     /**
     * 创建手机用户
@@ -22,8 +22,16 @@ public interface UserMapper {
     * @Author:wanghua
     * @Date:11:24 2019-06-03
     */
-    public Boolean createMobileUser(User user);
+    Integer createMobileUser(User user);
 
 
+
+    /**
+    * 更新user
+    *
+    * @Author:wanghua
+    * @Date:10:17 2019-06-12
+    */
+    Integer updateUser(User user);
 
 }

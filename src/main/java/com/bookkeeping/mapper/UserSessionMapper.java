@@ -32,4 +32,10 @@ public interface UserSessionMapper {
     @Insert(value = "insert into user_session(user_id, session_id, session_data) " +
             "values(#{userId},#{sessionId},#{sessionData})")
     Integer insert(UserSession us);
+
+    @Select(value = "select user_id " +
+            "from user_session " +
+            "where session_id = #{sessionId} " +
+            ";")
+    Long findUserId(String sessionId);
 }

@@ -1,6 +1,7 @@
 package com.bookkeeping.common.session;
 
 import com.bookkeeping.entity.UserSession;
+import com.bookkeeping.mapper.UserSessionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -26,6 +27,9 @@ public class SessionServiceImpl implements SessionService<UserSession> {
     private SessionService<UserSession> cacheSessionService;
 
 
+    @Autowired
+    private UserSessionMapper userSessionMapper;
+
     @Override
     public void save(UserSession session) throws Exception {
         if (null != databaseSessionService) {
@@ -50,4 +54,12 @@ public class SessionServiceImpl implements SessionService<UserSession> {
         }
         return Optional.empty();
     }
+
+    @Override
+    public Long findUserId(String sessionId) {
+        return userSessionMapper.findUserId(sessionId);
+    }
+
+
+
 }

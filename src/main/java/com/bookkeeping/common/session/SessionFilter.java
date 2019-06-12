@@ -41,7 +41,7 @@ public class SessionFilter extends OncePerRequestFilter implements OrderedFilter
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
-        if(requestURI.contains("login")){
+        if(requestURI.contains("login") || requestURI.contains("bindMobile")){
             filterChain.doFilter(request,response);
             return;
         }

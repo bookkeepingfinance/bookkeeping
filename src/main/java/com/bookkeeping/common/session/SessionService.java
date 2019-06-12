@@ -2,6 +2,7 @@ package com.bookkeeping.common.session;
 
 import com.bookkeeping.entity.UserSession;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 /**
@@ -26,5 +27,13 @@ public interface SessionService<T extends UserSession> {
      */
     Optional<T> load(T session) throws Exception;
 
+    /**
+    * 通过sessionID获取userID
+    *
+    * @Author:wanghua
+    * @Date:12:04 2019-06-12
+    */
+
+    Long findUserId(String sessionId);
 
 }

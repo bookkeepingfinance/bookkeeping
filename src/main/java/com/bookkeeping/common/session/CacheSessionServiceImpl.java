@@ -35,4 +35,9 @@ public class CacheSessionServiceImpl implements SessionService<UserSession> {
         UserSession result = cache.get(sessionId, UserSession.class);
         return Optional.ofNullable(result);
     }
+
+    @Override
+    public Long findUserId(String sessionId) {
+        return null;
+    }
 }
